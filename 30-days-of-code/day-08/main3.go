@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -13,11 +15,16 @@ func main() {
 		persons := map[string]string{}
 
 		for i := 0; i < N; i++ {
-			var name, phone string
-			fmt.Scan(&name)
-			fmt.Scan(&phone)
+			// var name, phone string
+			name_phone, _, _ := bufio.NewReader(os.Stdin).ReadLine()
+			// fmt.Scan(&name_phone)
+			name_phones := strings.Fields(string(name_phone))
+			// fmt.Println(name_phones)
+			fmt.Println(len(name_phones))
+			if len(name_phones) > 1 {
+				persons[name_phones[0]] = name_phones[1]
+			}
 
-			persons[strings.ToLower(name)] = phone
 		}
 
 		for j := 0; j < N; j++ {
