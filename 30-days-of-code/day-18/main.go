@@ -33,7 +33,6 @@ func main() {
 
 type Stack struct {
 	value []interface{}
-	count int
 }
 
 func NewStack() *Stack {
@@ -41,23 +40,22 @@ func NewStack() *Stack {
 }
 
 func (s *Stack) Push(v interface{}) {
-	s.value = append(s.value[:s.count], v)
-	s.count++
+	s.value = append(s.value, v)
 }
 
 func (s *Stack) Pop() interface{} {
-	if s.count == 0 {
+	l := len(s.value) - 1
+	if l+1 == 0 {
 		return nil
 	}
 
-	s.count--
-	return s.value[s.count]
+	v := s.value[l]
+	s.value = s.value[:l]
+	return v
 }
 
 type Queue struct {
 	value []interface{}
-	front int
-	rear  int
 }
 
 func NewQueue() *Queue {
@@ -66,19 +64,16 @@ func NewQueue() *Queue {
 
 func (q *Queue) Enqueue(v interface{}) {
 	q.value = append(q.value, v)
-	q.rear++
-
 }
 
 func (q *Queue) Dequeue() interface{} {
-	if q.rear == 0 {
+	if len(q.value) == 0 {
 		return nil
 	}
 
-	value := q.value[q.front]
+	value := q.value[0]
 
-	q.value = q.value[q.front+1:]
-	q.rear--
+	q.value = q.value[1:]
 
 	return value
 }
