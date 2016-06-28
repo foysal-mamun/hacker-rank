@@ -104,3 +104,7 @@ func checkRRow(x, y int, arr [][]string) string {
 	}
 	return a
 }
+
+func getMax() {
+
+}
