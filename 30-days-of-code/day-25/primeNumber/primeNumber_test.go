@@ -16,6 +16,8 @@ func TestIsPrimeNumberV1(t *testing.T) {
 			t.Errorf("%d is prime number, but we are tesing non prime number", i)
 		}
 	}
+
+	// t.Errorf("test %v", pn.IsPrimeNumberV3(2147483647))
 }
 
 func TestIsPrimeNumberV2(t *testing.T) {
@@ -48,4 +50,19 @@ func TestIsPrimeNumberV3(t *testing.T) {
 			t.Errorf("%d is prime number, but we are tesing non prime number", i)
 		}
 	}
+}
+
+func BenchmarkIsPrimeNumberV1(b *testing.B) {
+	pn := New()
+	pn.IsPrimeNumberV1(2147483647)
+}
+
+func BenchmarkIsPrimeNumberV2(b *testing.B) {
+	pn := New()
+	pn.IsPrimeNumberV1(2147483647)
+}
+
+func BenchmarkIsPrimeNumberV3(b *testing.B) {
+	pn := New()
+	pn.IsPrimeNumberV3(2147483647)
 }
